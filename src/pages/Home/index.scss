@@ -1,27 +1,155 @@
-.Home{
+html,
+body {
+  width: 100vw;
   height: 100vh;
-  background: linear-gradient(45deg, #000 0, #000 50%, #fff 50%);
+  overflow: hidden;
+  background: #000;
 
-  &::before {
-    content: "欢迎金哥 个人网站";
+}
+
+.Home {
+
+  position: relative;
+  width: 640px;
+  height: 150px;
+  color: #fff;
+  font-size: 124px;
+  text-align: center;
+  margin: 50vh auto;
+  border-bottom: 10px solid #fff;
+  transform: skewY(5deg);
+  background: #000;
+      filter: blur(1px) contrast(10);
+  &::before,
+  &::after {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #fff;
-    font-size: 120px;
-    white-space: nowrap;
-    mix-blend-mode: difference;
-    animation: move 3s infinite linear alternate;
+    content: "";
+    bottom: -20px;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    transform: translate(0, 0);
+    animation: moves 7.5s ease-in-out infinite;
+  }
+
+  &::after {
+    animation: moves 7.5s ease-in-out 1s infinite;
   }
 }
 
-@keyframes move {
-  0% {
-    transform: translate(-20%, -50%);
+@keyframes moves {
+  80% {
+    bottom: -30px;
+    transform: translate(623px, 0);
+  }
+
+  93% {
+    transform: translate(623px, 3px);
+    opacity: 1;
   }
 
   100% {
-    transform: translate(-80%, -50%);
+    transform: translate(623px, 150px);
+    opacity: 0;
   }
+}
+
+.header{
+  display: flex;
+    justify-content: center;
+    align-items: center; 
+    position:fixed;
+    z-index: 1000;
+    width: 100vw;
+    top: 0;
+    height: 20vh;
+    filter: none !important;
+    
+    *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+    
+      @keyframes rotate {
+        100% {
+          transform: translate(-50%, -50%) rotate(1turn);
+        }
+      }
+    
+      .btn {
+        position: relative;
+        z-index: 0;
+        width: 160px;
+        height: 80px;
+        line-height: 80px;
+        color: #0ebeff;
+        font-size: 24px;
+        border-radius: 10px;
+        text-align: center;
+        margin: auto;
+        overflow: hidden;
+        cursor: pointer;
+        transition: .3s;
+        -webkit-box-reflect: below 10px linear-gradient(transparent, rgba(0, 0, 0, .4));
+    
+        &:hover {
+          color: #fff;
+          box-shadow: 0 0 5px #0ebeff,
+            0 0 25px #0ebeff;
+    
+          &::after,
+          &::before {
+            transition: .3s;
+            background: #0ebeff;
+          }
+        }
+    
+        &::before {
+          content: '';
+          position: absolute;
+          z-index: -2;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 150%;
+          height: 300%;
+          background-color: #000;
+          background-repeat: no-repeat;
+          background-size: 50% 50%;
+          background-position: 0 0;
+          background-image: conic-gradient(#0ebeff, #0ebeff);
+          animation: rotate 2s linear infinite;
+        }
+    
+        &::after {
+          content: '';
+          position: absolute;
+          z-index: -1;
+          left: 2px;
+          top: 2px;
+          width: calc(100% - 4px);
+          height: calc(100% - 4px);
+          background: #000;
+          border-radius: 10px;
+        }
+      }
+    
+      .btn1 {
+        filter: hue-rotate(90deg);
+      }
+    
+      .btn2 {
+        filter: hue-rotate(135deg);
+      }
+    
+      .btn3 {
+        filter: hue-rotate(45deg);
+      }
+
+             .btn4 {
+               filter: hue-rotate(180deg);
+             }
 }

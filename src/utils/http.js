@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const http = axios.create({
-  baseURL: 'https://apitest.myweixue.com',
+  baseURL: 'http://115.29.186.194/jjy',
   headers: {
     'Content-Type': 'application/json',
   },
