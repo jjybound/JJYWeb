@@ -1,23 +1,34 @@
-import { createHashRouter } from 'react-router-dom'
+import { createBrowserRouter } from 'react-router-dom'
 import MonthBill from '../pages/Home'
 import Login from '../pages/Login'
-const router = createHashRouter([
+import Register from '../pages/Register'
+const router = createBrowserRouter([
    {
-    path: '/',
-    children: [
-      {
-        index: true,
-        element: <Login />
-      },
-     
-    ]
-  },
-  {
     path: '/index',
     children: [
       {
         index: true,
         element: <MonthBill />
+      },
+     
+    ]
+  },
+   {
+    path: '/register',
+    children: [
+      {
+        index: true,
+        element: <Register />
+      },
+     
+    ]
+  },
+  {
+    path: '/',
+    children: [
+      {
+        index: true,
+        element: <Login />
       },
      
     ]
