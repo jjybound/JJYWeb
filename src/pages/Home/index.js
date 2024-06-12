@@ -6,7 +6,7 @@ import { Modal } from 'antd';
 import { setTokenToLocalStorage } from '../../store/slices/ka';
 import { HomeStyle } from './style';
 import InitPage from '../../components/Init/index'
-import OnePage from '@/components/OnePage';
+import OnePage from '../../components/OnePage';
 const Home = () => {
   const navigate = useNavigate();
 
