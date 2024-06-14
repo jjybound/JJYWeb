@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate} from 'react-router-dom';
 import './index.scss';
-import { JJYLogin } from '@/api';
+import { JJYLogin } from '../../api';
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -24,7 +24,9 @@ const Login = () => {
         if (res.data.code === 200) {
           navigate('/index')
         } else { 
-          console.log('12312312')
+          alert('账号或密码输入错误，请重新输入')
+          setPassword('')
+          setUsername('')
         }
       })
   };

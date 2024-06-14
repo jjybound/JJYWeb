@@ -1,7 +1,7 @@
-import http from "@/utils/http";
+import http from "../utils/http";
 
 //登录
-export const JJYLogin = (userData) => {
-    return http.post("/users/login", userData);
+export const JJYLogin = async(userData) => {
+    return await http.post("/users/login", userData);
     
 };
