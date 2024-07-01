@@ -16,6 +16,11 @@ const OnePage = () => {
     let solveBug = -15-initialImages.length*2;
     let OkBug = -155;
     const handleNext = () => {
+        if (currentIndex === 0) { 
+            const rotateUl = document.querySelector('.special-ul');
+            console.log(rotateUl)
+            rotateUl.style.transform = `translateX(350px)`;
+        }
         if (currentIndex < initialImages.length - 1) {
              const rotateElement = document.querySelectorAll(".rotate")[currentIndex];
         if (rotateElement) {
@@ -27,11 +32,16 @@ const OnePage = () => {
             currentIndex++;
         }
     };
-  const handleBack = () => {
+    const handleBack = () => {
+  
+      if (currentIndex-1 === 0) { 
+            const rotateUl = document.querySelector('.special-ul');
+            console.log(rotateUl)
+            rotateUl.style.transform = `translateX(-75px)`;
+        }
     if (currentIndex > 0) {
         const rotateElementBack = document.querySelectorAll(".rotate")[currentIndex-1];
         if (rotateElementBack) {
-            console.log(solveBug)
             rotateElementBack.style.transform = `rotateY(${solveBug}deg)`;
         }
         OkBug = OkBug - 2;
@@ -46,7 +56,7 @@ const OnePage = () => {
             <InitStyle />
             <div className="contain">
                 <div className="all">
-                <ul>
+                <ul className="special-ul">
                     {initialImages.map((image, index) => (
                         <li key={index} className='rotate'>
                             <img src={image.url} alt="" />

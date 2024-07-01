@@ -11,3 +11,7 @@ export const JJYLogin = (userData) => {
 export const JJYRegister = (userData) => {
     return http.post("/users/register", userData);
 };
+//文章
+export const JJYArticle = (pageNum,pageSize,menu,tinymenu) => {
+    return http.get(`yzy/list?pageNum=${pageNum}&pageSize=${pageSize}&menu=${menu}&tinymenu=${tinymenu}`);
+};

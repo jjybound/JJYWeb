@@ -5,11 +5,20 @@ export const InitStyle = createGlobalStyle`
     position: absolute;
     height: 75vh;
     width: 90vw;
-    background-color: #F5DEB3;
+   background-color: #F5DEB3;
     bottom: 2vh;
     left: 5vw;
-    
+    animation:fadeOut 2s ease-in-out;
 }
+@keyframes fadeOut {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
     .all{
     height: 100%;
     width: 100%;
@@ -27,17 +36,17 @@ export const InitStyle = createGlobalStyle`
     }
 ul {
     list-style: none;
-    margin-left: 43vw;
-    width: 400px;
-    height: 580px;
+    margin:auto;
+    width: 777px;
+    height: 620px;
     transform-style: preserve-3d; /* 开启3d效果 */
-    perspective: 2000px; /* 设置视距，看起来会有近大远小的感觉 */
+    perspective: 4000px; /* 设置视距，看起来会有近大远小的感觉 */
     transition: 2s;
 }
 
 img {
-    width: 400px;
-    height: 580px;
+    width: 777px;
+    height: 620px;
     box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
