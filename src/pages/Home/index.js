@@ -33,7 +33,9 @@ const Home = () => {
     setShowTwoPage(true);
     setShowOnePage(false); // 确保在展示TwoPage时，OnePage为false
   };
-
+  const handleShowLu = () => {
+    window.open('/carousel');
+  };
   return (
     <>
       <HomeStyle />
@@ -41,9 +43,8 @@ const Home = () => {
         <div className='header'>
           <div className="btn" onClick={handleShowOnePage}>图书</div>
           <div className="btn btn1" onClick={handleShowTwoPage}>游子吟</div>
-          <div className="btn btn2">耶耶</div>
-          <div className="btn btn3">鹭</div>
-          <div className="btn btn4" onClick={handleLogout}>退出</div>
+          <div className="btn btn2" onClick={handleShowLu}>鹭</div>
+          <div className="btn btn3" onClick={handleLogout}>退出</div>
         </div>
         {showOnePage || showTwoPage ? null : <InitPage />}
         {showOnePage && <OnePage />}

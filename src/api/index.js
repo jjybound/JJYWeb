@@ -1,5 +1,5 @@
 import http from "../utils/http";
-import http from "../utils/http";
+
 
 //登录
 export const JJYLogin = (userData) => {

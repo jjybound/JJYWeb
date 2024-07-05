@@ -56,33 +56,33 @@ li {
 }
 
 li:nth-child(1) {
-    transform: rotateY(-25deg);
+    transform: rotateY(-18deg);
     transition: 2s;
 }
 
 li:nth-child(2) {
-    transform: rotateY(-23deg);
+    transform: rotateY(-16deg);
     transition: 2s;
 }
 
 li:nth-child(3) {
-    transform: rotateY(-21deg);
+    transform: rotateY(-14deg);
     transition: 2s;
 }
     li:nth-child(4) {
-    transform: rotateY(-19deg);
+    transform: rotateY(-12deg);
     transition: 2s;
 }
     li:nth-child(5) {
-    transform: rotateY(-17deg);
+    transform: rotateY(-10deg);
     transition: 2s;
 }
     li:nth-child(6) {
-    transform: rotateY(-15deg);
+    transform: rotateY(-8deg);
     transition: 2s;
 }
     li:nth-child(7) {
-    transform: rotateY(-13deg);
+    transform: rotateY(-6deg);
     transition: 2s;
 }
 `;

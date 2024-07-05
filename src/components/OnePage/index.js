@@ -13,8 +13,8 @@ const OnePage = () => {
 ];
 
     let currentIndex = 0;
-    let solveBug = -15-initialImages.length*2;
-    let OkBug = -155;
+    let solveBug = -20;
+    let OkBug = -170;
     const handleNext = () => {
         if (currentIndex === 0) { 
             const rotateUl = document.querySelector('.special-ul');
