@@ -274,8 +274,11 @@ height:36px !important;
   line-height:50px;
   padding:0 10px;
   width:100%;
-  font-size:18px;
+  font-size:1rem;
+  display:flex;
+  justify-content:space-between;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
   
 }
 .hoverDiv:hover .SongLists{
