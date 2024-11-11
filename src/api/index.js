@@ -16,3 +16,7 @@ export const JJYRegister = (userData) => {
 export const JJYArticle = (pageNum,pageSize,menu,tinymenu) => {
     return http.get(`yzy/list?pageNum=${pageNum}&pageSize=${pageSize}&menu=${menu}&tinymenu=${tinymenu}`);
 };
+//图片
+export const JJYImg = (pageNum,pageSize) => {
+    return http.get(`cl/list?pageNum=${pageNum}&pageSize=${pageSize}`);
+};

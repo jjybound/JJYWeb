@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-export const CarouselStyle = createGlobalStyle`
+export const InitlStyle = createGlobalStyle`
 * {
   margin: 0;
   padding: 0;
@@ -14,9 +14,8 @@ text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 .image-slider {
   width: 100vw;
   height: 100vh;
-  background-size:100% 100%;
-  background-repeat: no-repeat;
-  object-fit: contain;
+  background-image: url("https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/v2-7549490fc918c1be985242650e2e74fd_r.jpg");
+  background-size: cover;
   animation: fadeIn 2s forwards;
 }
   @keyframes fadeIn {
@@ -28,7 +27,92 @@ text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   }
 }
   
+.Allcreen{
+  position: relative;
+ width: 100vw;
+  height: 100vh;
+  display:flex;
+  justify-content:space-between;
+  .leftDoor{
+  height: 100vh;
+  width:45vw;
+  background-color:red;
+  background: linear-gradient(30deg, #f9d71c, #ff9eb5, #b76fd1);
+    animation: hueRotate 20s infinite alternate;
+  }
+  .rightDoor{
+  height: 100vh;
+  width:45vw;
+   background: linear-gradient(120deg, #b76fd1, #ff9eb5, #f9d71c);
+    animation: hueRotate 20s infinite alternate;
+  }
+    .centerDoor{
+    height: 100vh;
+  width:10vw;
+    }
+    @keyframes hueRotate {
+    100% {
+        filter: hue-rotate(360deg);
+    }
 
+}    
+    .pictureOne{
+    position: absolute;
+    top: 50%;
+    height: 500px;
+    width: 500px;
+    left: 10%;
+    }    
+     .pictureTwo{
+    position: absolute;
+    top: 50%;
+    height: 500px;
+    width: 500px;
+    right: 10%;
+    }  
+    .pictureThree{
+    position: absolute;
+    top: 50%;
+    height: 50vh;
+    width: 30vw;
+    right: 35%;
+    }    
+    .InputName{
+    position: absolute;
+    top: 5%;
+    height: 30vh;
+    width: 30vw;
+
+    right: 35%;
+    border-radius:20px;
+    background: linear-gradient(90deg, hsl(270, 50%, 80%), hsl(330, 50%, 80%), hsl(45, 50%, 80%));
+    animation: hueRotate 20s infinite alternate;
+    .InputTitle{
+      width: 100%;
+      height:10vh;
+      line-height: 10vh;
+      text-align: center;
+      font-size:5rem;
+      color:rgba(255, 255, 255, 0.6);
+    }
+      .InputContent{
+      width: 100%;
+      height:20vh;
+      display:flex;
+      justify-content:space-around;
+      align-items:center;
+      .ant-input-number{
+        width:100px;
+        height:100px;
+      }
+        .ant-input-number-input{
+        height:100px;
+        font-size:64px;
+        text-align: center;
+        caret-color: transparent;
+        }
+    }
+    }
 .image-slider .slide {
   width: 100%;
   height: 100%;
@@ -147,85 +231,6 @@ text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     font-size: 2rem;
     color:white;
 }
-    .Pagesbottons{
-  position: absolute;
-  width:3vw;
-  height:5vh;
-  background-color: rgba(0,0,0,0.6);
-  bottom:0;
-  left:0;
-  z-index: 9999;
-  text-align: center;
-    line-height: 5vh;
-    font-size: 2rem;
-    color:white;
-}
-.PagesAll .Pagesbottons{
-  display:block;
-}
-.PagesAll:hover .Pagesbottons{
-  display:none;
-}  
-  .PagesAll:hover .Pages{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}  
-.Pages{
-display:none;
- position: absolute;
-  background-color: rgba(0,0,0,0.6);
-  bottom:0;
-  left:0;
-  z-index: 9999;
-  
-  animation: PagesIn 1.2s forwards;
-}
-  @keyframes PagesIn {
-  from {
-      width:3vw;
-  height:5vh;
-  }
-  to {
-  width:12vw;
-     height: 7vh;
-     border-radius:0 20px 0 0;
-  }
-}
-  .ant-pagination-simple-pager{
-  width:32px;
-  margin-top:3%;
-  white-space: nowrap;
-  margin-inline-end:80px !important;
-  font-size: 24px;
-  line-height:20px;
-  color:#ffffff;
-  input{
-  
-
-   font-size: 24px;
-   background-color: pink !important;
-   color:#000000 !important;
-   }
-  }
-.ant-pagination-next{
-background-color: pink;
-height: 36px !important;
-    line-height: 36px !important;
-}
-.ant-pagination-prev{
-background-color: pink;
-height: 36px !important;
-margin-inline-end: 30px !important;
-    line-height: 36px !important;
-    vertical-align: top;
-    width: 36px;
-}
-.ant-pagination-item-link{
-box-shadow:none;
-height:36px !important;
-}
-
 .mp4{
     position: absolute;
     top:2%;
@@ -281,31 +286,11 @@ height:36px !important;
 .hoverDiv:hover .SongLists{
     display:block;
     width:12vw;
-    height:200px;
-    overflow:auto;
     background-color: rgba(0,0,0,0.6);
     cursor: pointer;
     border-radius:0 0 12px 12px;
-     animation: SongIn 1s forwards;
 }
- @keyframes SongIn {
-  from {
-  height:2vw;
-  opacity: 0.5;
-  }
-  to {
-     height: 200px;
-      opacity: 1;
-  }
-}
-.SongLists::-webkit-scrollbar {
-    width: 5px;
-    overflow: hidden;
-}
-.SongLists::-webkit-scrollbar-thumb {
-    background-color: rgba(200, 200, 200, 0.6);
-    border-radius: 10px;
-}
+
     .chosen{
     color:pink;
     }
