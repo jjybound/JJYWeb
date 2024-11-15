@@ -20,8 +20,10 @@ const Home = () => {
   };
 
   const handleShowOnePage = () => {
-    setShowOnePage(true);
-    setShowTwoPage(false); // 确保在展示OnePage时，TwoPage为false
+    /*   setShowOnePage(true);
+      setShowTwoPage(false); // 确保在展示OnePage时，TwoPage为false */
+    //  window.location.href = '../../../bithday/index.html'
+    window.open('../../bithday/index.html', '_blank');
   };
 
   const handleModalOk = () => {
@@ -41,7 +43,9 @@ const Home = () => {
       <HomeStyle />
       <div className='header-container'>
         <div className='header'>
-          <div className="btn" onClick={handleShowOnePage}>图书</div>
+          <div className="btn" onClick={handleShowOnePage}>
+            图书
+          </div>
           <div className="btn btn1" onClick={handleShowTwoPage}>游子吟</div>
           <div className="btn btn2" onClick={handleShowLu}>鹭</div>
           <div className="btn btn3" onClick={handleLogout}>退出</div>
