@@ -40,7 +40,22 @@ const Carousel = () => {
     ]
     const backgroundUrl = [
         "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/v2-7549490fc918c1be985242650e2e74fd_r.jpg",
-        "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/v2-eb997fb2e88c4868f209d39063c4c55c_r.png"
+        "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/v2-eb997fb2e88c4868f209d39063c4c55c_r.png",
+        "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/82bb53aec77b54b69fcea39941a424bb.jpg",
+        "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/f920191a6337f141c53cb1499e1052b5.jpg",
+        "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/d685952fba1b30f0c3cd6919d750d707.jpeg",
+        "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/c1446e4f01b70bf94aa322b6d69b3902.jpeg",
+        "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/db3f8da4a502b1f6688f2f601822d40c.jpeg",
+        "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/955fb27fecd6f3720407298ff5901976.jpg",
+        "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/32452b7ac828a9e08d4f973512246930.jpeg",
+        "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/1f7751765e88a8ca350ee1ed772574a5.jpg",
+        "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/7311ef7b1b61f14373ad279aa95ae147.jpeg"
+
+
+
+
+
+
     ]
     useEffect(() => {
         let interval;

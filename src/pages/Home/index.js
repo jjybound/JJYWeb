@@ -44,10 +44,10 @@ const Home = () => {
       <div className='header-container'>
         <div className='header'>
           <div className="btn" onClick={handleShowOnePage}>
-            图书
+            生日
           </div>
           <div className="btn btn1" onClick={handleShowTwoPage}>游子吟</div>
-          <div className="btn btn2" onClick={handleShowLu}>鹭</div>
+          <div className="btn btn2" onClick={handleShowLu}>故事</div>
           <div className="btn btn3" onClick={handleLogout}>退出</div>
         </div>
         {showOnePage || showTwoPage ? null : <InitPage />}
