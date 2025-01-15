@@ -187,16 +187,16 @@ display:none;
   height:5vh;
   }
   to {
-  width:12vw;
+  width:14vw;
      height: 7vh;
      border-radius:0 20px 0 0;
   }
 }
   .ant-pagination-simple-pager{
-  width:32px;
+  width:40px;
   margin-top:3%;
   white-space: nowrap;
-  margin-inline-end:80px !important;
+  margin-inline-end:90px !important;
   font-size: 24px;
   line-height:20px;
   color:#ffffff;
