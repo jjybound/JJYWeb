@@ -33,6 +33,7 @@ text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   height: 100vh;
   display:flex;
   justify-content:space-between;
+  overflow: hidden;
   .leftDoor{
   height: 100vh;
   width:45vw;

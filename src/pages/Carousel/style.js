@@ -321,5 +321,25 @@ height:36px !important;
     justify-content:space-around;
     align-items:center;
 }
-
+    .danmu-container{
+    width:100vw;
+    height:100vh;
+    position:absolute;
+    overflow:hidden;
+    }
+.danmu{
+  font-size:30px;
+  z-index:9999;
+  left:0;
+  color:#fff;
+  shadow:none;
+}
+  @keyframes moveRight {
+  0% {
+    transform: translateX(0); /* 起始位置 */
+  }
+  100% {
+    transform: translateX(100vw); /* 移动到视口的右边 */
+  }
+}
 `

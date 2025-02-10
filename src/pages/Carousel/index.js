@@ -29,6 +29,29 @@ const Carousel = () => {
     const [value2, setValue2] = useState();
     const [value3, setValue3] = useState();
     const [value4, setValue4] = useState();
+    const [DanMuList, setDanMuList] = useState([
+        {
+            id: 1,
+            danmu: "我是弹幕",
+            createTime: "2023-07-07T09:00:00Z",
+        },
+        {
+            id: 2,
+            danmu: "我是弹幕1",
+        },
+        {
+            id: 3,
+            danmu: "我是弹幕2",
+        },
+        {
+            id: 4,
+            danmu: "我是弹幕3",
+        },
+        {
+            id: 5,
+            danmu: "我是弹幕4",
+        },
+    ])
     const SongList = [
         { author: "卢广仲", title: "刻在我心底的名字", url: "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/%E9%9F%B3%E4%B9%90%E6%96%87%E4%BB%B6/%E5%88%BB%E5%9C%A8%E6%88%91%E5%BF%83%E5%BA%95%E7%9A%84%E5%90%8D%E5%AD%97-%E5%8D%A2%E5%B9%BF%E4%BB%B2.128.mp3" },
         { author: "棱镜乐队", title: "总有一天你会出现在我身边", url: "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/%E9%9F%B3%E4%B9%90%E6%96%87%E4%BB%B6/%E6%80%BB%E6%9C%89%E4%B8%80%E5%A4%A9%E4%BD%A0%E4%BC%9A%E5%87%BA%E7%8E%B0%E5%9C%A8%E6%88%91%E8%BA%AB%E8%BE%B9.mp3" },
@@ -56,21 +79,11 @@ const Carousel = () => {
 
 
 
-    ]
-    useEffect(() => {
-        let interval;
-        if (isPlaying) {
-            interval = setInterval(() => {
-                let newIndex = currentIndex + 1;
-                if (newIndex >= slides.length) {
-                    newIndex = 0;
-                }
-                setCurrentIndex(newIndex);
-            }, 10000); // 每隔10秒切换一次轮播图
-        }
+    ];
 
-        return () => clearInterval(interval); // 清除定时器
-    }, [currentIndex, isPlaying, slides.length]);
+    // 新增 danmuRef 和 danmuIndex 状态
+    const [danmuIndex, setDanmuIndex] = useState(0);
+
     useEffect(() => {
         inputRefs[0].current.focus();
     }, []);
@@ -217,6 +230,21 @@ const Carousel = () => {
             setCurrentIndex(0);
         })
     }, [pageNum])
+
+    // 新增定时器来控制弹幕的显示和滑动
+    /*  useEffect(() => {
+         const interval = setInterval(() => {
+             setDanmuIndex((prevIndex) => {
+                 // 计算下一个索引
+                 const nextIndex = (prevIndex + 1) % DanMuList.length;
+                 return nextIndex;
+             });
+         }, 10000); 
+ 
+         return () => clearInterval(interval); // 清理定时器
+     }, [DanMuList.length]); */
+
+
     const changePage = (e) => {
         setPageNum(e)
     }
@@ -257,52 +285,70 @@ const Carousel = () => {
                 <div className='pictureTwo'><img style={{ width: '100%', height: '100%' }} src="https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/%E7%9C%8B%E7%94%B5%E8%A7%86.svg"></img></div>
                 <div className='pictureThree'><img style={{ width: '100%', height: '100%' }} src="https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/%E9%94%81%E4%BD%8F_%E5%8E%BB%E9%99%A4%E8%83%8C%E6%99%AF.png"></img></div>
             </div>}
-            {Show && loading == false && <div className="image-slider" style={{ backgroundImage: `url(${backgroundUrl[pageNum - 1]})` }}>
+            {Show && loading == false && (
+                <div className="image-slider" style={{ backgroundImage: `url(${backgroundUrl[pageNum - 1]})` }}>
 
-                {slides.map((slide, index) => (
-                    <div key={index} className={`slide ${index === currentIndex ? 'current' : ''}`}>
-                        <img src={slide.imageUrl} alt="" className="image" />
-                        <div className="content">
-                            <h1 className="title">{slide.title}</h1>
-                            <p className="description">{slide.description}</p>
+                    {slides.map((slide, index) => (
+                        <div key={index} className={`slide ${index === currentIndex ? 'current' : ''}`}>
+                            <img src={slide.imageUrl} alt="" className="image" />
+                            <div className="content">
+                                <h1 className="title">{slide.title}</h1>
+                                <p className="description">{slide.description}</p>
+                            </div>
+                        </div>
+                    ))}
+                    <div id="prev" onClick={handlePrevClicked}>
+                        <LeftOutlined />
+                    </div>
+                    <div id="next" onClick={handleNextClicked}>
+                        <RightOutlined />
+                    </div>
+                    {/* <div className='bottons' onClick={handlePlayPauseClicked}>{isPlaying ? <PauseOutlined /> : <PlayCircleOutlined />}</div> */}
+                    <div className='PagesAll' onMouseLeave={AnimationStart}>
+                        <div className='Pagesbottons' onClick={handlePlayPauseClicked}>{pageNum}</div>
+                        <div className='Pages' onAnimationEnd={AnimationEnd} >
+                            {isAnimationComplete && <Pagination simple showSizeChanger={false} defaultCurrent={pageNum} onChange={changePage} total={total} />}
                         </div>
                     </div>
-                ))}
-                <div id="prev" onClick={handlePrevClicked}>
-                    <LeftOutlined />
-                </div>
-                <div id="next" onClick={handleNextClicked}>
-                    <RightOutlined />
-                </div>
-                <div className='bottons' onClick={handlePlayPauseClicked}>{isPlaying ? <PauseOutlined /> : <PlayCircleOutlined />}</div>
-                <div className='PagesAll' onMouseLeave={AnimationStart}>
-                    <div className='Pagesbottons' onClick={handlePlayPauseClicked}>{pageNum}</div>
-                    <div className='Pages' onAnimationEnd={AnimationEnd} >
-                        {isAnimationComplete && <Pagination simple showSizeChanger={false} defaultCurrent={pageNum} onChange={changePage} total={total} />}
-                    </div>
-                </div>
-                <div className='mp4 hoverDiv' >
-                    <div className="default">
-                        <p style={{ color: 'pink' }}>{SongList[SongIndex].title}</p>
-                        <p>{SongList[SongIndex].author}</p>
-                    </div>
-                    <div className="hover">
-                        <div onClick={backSong} style={{ fontSize: '2.5rem', color: 'pink', cursor: 'pointer' }}><StepBackwardOutlined /></div>
-                        <div onClick={playAudio} className='play'>{audioPlaying ? <PauseOutlined /> : <CaretRightOutlined />}</div>
-                        <div onClick={nextSong} style={{ fontSize: '2.5rem', color: 'pink', cursor: 'pointer' }}><StepForwardOutlined /></div>
-                    </div>
-                    <div className='SongLists'>
-                        {SongList.map((item, index) => (
-                            <div key={item.author} onClick={() => chosenSong(index)} className={`Songitems ${index === choseIndex ? "chosen" : ""}`}>
-                                {item.title}<span><SendOutlined /></span>
+                    {/* <div className='danmu-container'>
+
+                        {DanMuList.map((item, index) => (
+                            <div key={item.id} className='danmu' style={{
+                                position: 'absolute',
+                                left: '0',
+                                top: `${Math.random() * 45 + 20}%`,
+                                display: index === danmuIndex ? 'block' : 'none',
+                                animation: index === danmuIndex ? 'moveRight 10s linear forwards' : 'none'
+                            }}>
+                                {item.danmu}
                             </div>
+
                         ))}
+                    </div> */}
+                    <div className='mp4 hoverDiv' >
+                        <div className="default">
+                            <p style={{ color: 'pink' }}>{SongList[SongIndex].title}</p>
+                            <p>{SongList[SongIndex].author}</p>
+                        </div>
+                        <div className="hover">
+                            <div onClick={backSong} style={{ fontSize: '2.5rem', color: 'pink', cursor: 'pointer' }}><StepBackwardOutlined /></div>
+                            <div onClick={playAudio} className='play'>{audioPlaying ? <PauseOutlined /> : <CaretRightOutlined />}</div>
+                            <div onClick={nextSong} style={{ fontSize: '2.5rem', color: 'pink', cursor: 'pointer' }}><StepForwardOutlined /></div>
+                        </div>
 
+                        <div className='SongLists'>
+                            {SongList.map((item, index) => (
+                                <div key={item.author} onClick={() => chosenSong(index)} className={`Songitems ${index === choseIndex ? "chosen" : ""}`}>
+                                    {item.title}<span><SendOutlined /></span>
+                                </div>
+                            ))}
+
+                        </div>
                     </div>
-                </div>
 
-                <audio ref={audioRef} onEnded={AudioEnded} autoPlay preload="none" src={SongList[SongIndex].url}></audio>
-            </div>}
+                    <audio ref={audioRef} onEnded={AudioEnded} autoPlay preload="none" src={SongList[SongIndex].url}></audio>
+                </div>
+            )}
             {loading == true &&
                 <>
                     <LoadStyle />
