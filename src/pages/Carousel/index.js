@@ -2,10 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { CarouselStyle } from "./style";
 import { InitlStyle } from './initstyle';
 import { LoadStyle } from './loadstyle';
-import { JJYImg } from '../../api';
-import { RightOutlined, LeftOutlined, PauseOutlined, PlayCircleOutlined, CaretRightOutlined, StepBackwardOutlined, StepForwardOutlined, SendOutlined, ProductOutlined } from '@ant-design/icons';
+import { JJYDanmu, JJYImg, JJYSendDanmu } from '../../api';
+import { RightOutlined, LeftOutlined, PauseOutlined, PlayCircleOutlined, CaretRightOutlined, StepBackwardOutlined, StepForwardOutlined, SendOutlined, ProductOutlined, EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import { InputNumber, Pagination } from 'antd';
 import { message } from 'antd';
+import { TextArea } from 'antd-mobile';
 
 
 const Carousel = () => {
@@ -22,6 +23,7 @@ const Carousel = () => {
     const [total, setTotal] = useState(0)
     const audioRef = useRef(null);
     const [pageNum, setPageNum] = useState(1)
+    const [isShowText, setIsShowText] = useState(true)
     const [pageSize, setPageSize] = useState(10)
     const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
     const [messageApi, contextHolder] = message.useMessage();
@@ -29,29 +31,10 @@ const Carousel = () => {
     const [value2, setValue2] = useState();
     const [value3, setValue3] = useState();
     const [value4, setValue4] = useState();
+    const [danmuInput, setDanMuInput] = useState('')
     const [DanMuList, setDanMuList] = useState([
-        {
-            id: 1,
-            danmu: "我是弹幕",
-            createTime: "2023-07-07T09:00:00Z",
-        },
-        {
-            id: 2,
-            danmu: "我是弹幕1",
-        },
-        {
-            id: 3,
-            danmu: "我是弹幕2",
-        },
-        {
-            id: 4,
-            danmu: "我是弹幕3",
-        },
-        {
-            id: 5,
-            danmu: "我是弹幕4",
-        },
     ])
+    const DanMuListRef = useRef(DanMuList)
     const SongList = [
         { author: "卢广仲", title: "刻在我心底的名字", url: "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/%E9%9F%B3%E4%B9%90%E6%96%87%E4%BB%B6/%E5%88%BB%E5%9C%A8%E6%88%91%E5%BF%83%E5%BA%95%E7%9A%84%E5%90%8D%E5%AD%97-%E5%8D%A2%E5%B9%BF%E4%BB%B2.128.mp3" },
         { author: "棱镜乐队", title: "总有一天你会出现在我身边", url: "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/%E9%9F%B3%E4%B9%90%E6%96%87%E4%BB%B6/%E6%80%BB%E6%9C%89%E4%B8%80%E5%A4%A9%E4%BD%A0%E4%BC%9A%E5%87%BA%E7%8E%B0%E5%9C%A8%E6%88%91%E8%BA%AB%E8%BE%B9.mp3" },
@@ -65,11 +48,11 @@ const Carousel = () => {
         "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/v2-7549490fc918c1be985242650e2e74fd_r.jpg",
         "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/v2-eb997fb2e88c4868f209d39063c4c55c_r.png",
         "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/82bb53aec77b54b69fcea39941a424bb.jpg",
-        "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/f920191a6337f141c53cb1499e1052b5.jpg",
+        "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/09353157103_1920x1152.jpg",
         "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/d685952fba1b30f0c3cd6919d750d707.jpeg",
         "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/c1446e4f01b70bf94aa322b6d69b3902.jpeg",
-        "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/db3f8da4a502b1f6688f2f601822d40c.jpeg",
-        "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/955fb27fecd6f3720407298ff5901976.jpg",
+        "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/886907349fa63261a3624594ebec275f8bc048ab.jpg",
+        "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/7bd943644b6c980bb4e48fa0a8114af3.jpeg",
         "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/32452b7ac828a9e08d4f973512246930.jpeg",
         "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/1f7751765e88a8ca350ee1ed772574a5.jpg",
         "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/7311ef7b1b61f14373ad279aa95ae147.jpeg"
@@ -88,7 +71,23 @@ const Carousel = () => {
         inputRefs[0].current.focus();
     }, []);
 
+    const danmuInputChange = (e) => {
+        setDanMuInput(e)
+    }
+    const danmuInputPressEnter = (e) => {
 
+        if (e.key === 'Enter') {
+            if (danmuInput !== '') {
+                JJYSendDanmu({ ImgId: slides[currentIndex].id, description: danmuInput })
+                // 将弹幕添加到 DanMuList 的当前索引后面
+                const newDanMuList = [...DanMuList];
+                newDanMuList.splice(danmuIndex + 1, 0, { ImgId: slides[currentIndex].id, description: danmuInput, top: `${Math.random() * 45 + 20}%` });
+                setDanMuList(newDanMuList);
+                setDanMuInput('');
+            }
+            e.preventDefault();
+        }
+    };
     const handleNextClicked = () => {
         let newIndex = currentIndex + 1;
         if (newIndex >= slides.length) {
@@ -118,6 +117,10 @@ const Carousel = () => {
 
         setIsPlaying(!isPlaying); // 切换播放状态
     };
+    const handleshowText = () => {
+        setIsShowText(!isShowText)
+
+    }
     const backSong = () => {
         if (SongIndex == 0) {
             SetSongIndex(SongList.length - 1)
@@ -176,6 +179,7 @@ const Carousel = () => {
                 });
                 setTimeout(() => {
                     opens()
+                    getDanmu()
                 }, 2000);
             } else {
                 messageApi.open({
@@ -204,6 +208,17 @@ const Carousel = () => {
     const AudioEnded = () => {
         nextSong()
     }
+    const getDanmu = async () => {
+        if (slides.length > 0) {
+            await JJYDanmu(slides[currentIndex].id).then(res => {
+                const newDanmu = res.data.data.map(e => ({
+                    ...e,
+                    top: `${Math.random() * 45 + 20}%`
+                }));
+                setDanMuList(newDanmu);
+            });
+        }
+    };
     const onKeyDown = (e, index) => {
         if (e.keyCode === 8) { // 按下回退键
             e.preventDefault(); // 阻止默认行为，避免浏览器回退页面
@@ -230,19 +245,23 @@ const Carousel = () => {
             setCurrentIndex(0);
         })
     }, [pageNum])
-
+    useEffect(() => {
+        DanMuListRef.current = DanMuList; // 更新 DanMuListRef 的值
+    }, [DanMuList]);
     // 新增定时器来控制弹幕的显示和滑动
-    /*  useEffect(() => {
-         const interval = setInterval(() => {
-             setDanmuIndex((prevIndex) => {
-                 // 计算下一个索引
-                 const nextIndex = (prevIndex + 1) % DanMuList.length;
-                 return nextIndex;
-             });
-         }, 10000); 
- 
-         return () => clearInterval(interval); // 清理定时器
-     }, [DanMuList.length]); */
+    useEffect(() => {
+        setDanmuIndex(0);
+        getDanmu()
+        const interval = setInterval(() => {
+            setDanmuIndex((prevIndex) => {
+                // 计算下一个索引
+                const nextIndex = (prevIndex + 1) % DanMuListRef.current.length;
+                return nextIndex;
+            });
+        }, 10000);
+
+        return () => clearInterval(interval); // 清理定时器
+    }, [currentIndex, slides]);
 
 
     const changePage = (e) => {
@@ -291,10 +310,10 @@ const Carousel = () => {
                     {slides.map((slide, index) => (
                         <div key={index} className={`slide ${index === currentIndex ? 'current' : ''}`}>
                             <img src={slide.imageUrl} alt="" className="image" />
-                            <div className="content">
+                            {isShowText && (<div className="content">
                                 <h1 className="title">{slide.title}</h1>
                                 <p className="description">{slide.description}</p>
-                            </div>
+                            </div>)}
                         </div>
                     ))}
                     <div id="prev" onClick={handlePrevClicked}>
@@ -304,27 +323,35 @@ const Carousel = () => {
                         <RightOutlined />
                     </div>
                     {/* <div className='bottons' onClick={handlePlayPauseClicked}>{isPlaying ? <PauseOutlined /> : <PlayCircleOutlined />}</div> */}
+                    <div className='bottons' onClick={handleshowText}>{isShowText ? <EyeOutlined /> : <EyeInvisibleOutlined />}</div>
+
                     <div className='PagesAll' onMouseLeave={AnimationStart}>
                         <div className='Pagesbottons' onClick={handlePlayPauseClicked}>{pageNum}</div>
                         <div className='Pages' onAnimationEnd={AnimationEnd} >
                             {isAnimationComplete && <Pagination simple showSizeChanger={false} defaultCurrent={pageNum} onChange={changePage} total={total} />}
                         </div>
                     </div>
-                    {/* <div className='danmu-container'>
+                    <div className='danmu-container'>
 
                         {DanMuList.map((item, index) => (
                             <div key={item.id} className='danmu' style={{
                                 position: 'absolute',
                                 left: '0',
-                                top: `${Math.random() * 45 + 20}%`,
+                                top: item.top,
                                 display: index === danmuIndex ? 'block' : 'none',
-                                animation: index === danmuIndex ? 'moveRight 10s linear forwards' : 'none'
+                                animation: index === danmuIndex
+                                    ? (DanMuList.length == 1 ? 'moveRight 10s linear infinite' : 'moveRight 10s linear forwards')
+                                    : 'none'
+
                             }}>
-                                {item.danmu}
+                                {item.description}
                             </div>
 
                         ))}
-                    </div> */}
+                    </div>
+                    <div className='danmu-input' onKeyDown={danmuInputPressEnter}>
+                        <TextArea rows={4} placeholder='留下你的弹幕' onChange={danmuInputChange} value={danmuInput} />
+                    </div>
                     <div className='mp4 hoverDiv' >
                         <div className="default">
                             <p style={{ color: 'pink' }}>{SongList[SongIndex].title}</p>

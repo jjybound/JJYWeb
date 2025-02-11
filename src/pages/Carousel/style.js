@@ -327,6 +327,28 @@ height:36px !important;
     position:absolute;
     overflow:hidden;
     }
+    .danmu-input{
+    position:absolute;
+    right:0;
+    bottom:0;
+    z-index:9999;
+    background-color:rgba(0,0,0,0.6);
+    color:#fff;
+    padding:10px;
+    border-radius:12px;
+    }
+    .adm-text-area-element::-webkit-scrollbar {
+    width: 5px;
+    overflow: hidden;
+}
+.adm-text-area-element::-webkit-scrollbar-thumb {
+    background-color: rgba(200, 200, 200, 0.6);
+    border-radius: 10px;
+}
+    .adm-text-area-element{
+    color:#fff;
+    white-space: nowrap;
+    }
 .danmu{
   font-size:30px;
   z-index:9999;
@@ -341,5 +363,6 @@ height:36px !important;
   100% {
     transform: translateX(100vw); /* 移动到视口的右边 */
   }
+    
 }
 `

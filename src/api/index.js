@@ -20,3 +20,11 @@ export const JJYArticle = (pageNum,pageSize,menu,tinymenu) => {
 export const JJYImg = (pageNum,pageSize) => {
     return http.get(`cl/list?pageNum=${pageNum}&pageSize=${pageSize}`);
 };
+//接受弹幕
+export const JJYDanmu = (ImgId) => {
+    return http.get(`cl/danmu?ImgId=${ImgId}`);
+};
+//发送弹幕
+export const JJYSendDanmu = (data) => {
+    return http.post(`cl/add`,data);
+};
