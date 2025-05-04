@@ -55,7 +55,10 @@ const Carousel = () => {
         "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/7bd943644b6c980bb4e48fa0a8114af3.jpeg",
         "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/32452b7ac828a9e08d4f973512246930.jpeg",
         "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/1f7751765e88a8ca350ee1ed772574a5.jpg",
-        "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/7311ef7b1b61f14373ad279aa95ae147.jpeg"
+        "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/7311ef7b1b61f14373ad279aa95ae147.jpeg",
+        "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/12bk.jpg",
+        "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/03dd1b874677f373bccc171a680efc33.jpeg",
+        "https://jjy-yygh.oss-cn-hangzhou.aliyuncs.com/%E6%9C%8D%E5%8A%A1%E5%99%A8/cl/background/f1b32e527245ce029a0e3cf7c6bbc5e9.jpg"
 
 
 
